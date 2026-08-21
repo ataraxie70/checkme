@@ -1,0 +1,14 @@
+{
+  "name": "checkme",
+  "private": true,
+  "version": "0.1.0",
+  "description": "CheckMe! - infrastructure de publication et de consultation de données officielles",
+  "engines": { "node": ">=24.18 <25" },
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "lint": "echo 'lint: architecture foundation only'",
+    "typecheck": "echo 'typecheck: architecture foundation only'",
+    "test": "echo 'test: architecture foundation only'",
+    "build": "echo 'build: architecture foundation only'"
+  }
+}
