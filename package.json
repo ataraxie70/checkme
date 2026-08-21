@@ -11,6 +11,8 @@
     "runtime:test": "node --test tests/runtime/*.test.mjs",
     "typecheck": "node scripts/typecheck-foundation.mjs",
     "test": "npm run architecture:test && npm run runtime:test",
-    "build": "node scripts/build-foundation.mjs"
+    "build": "node scripts/build-foundation.mjs",
+    "dev:api": "node apps/api/src/runtime.mjs",
+    "dev:worker": "node apps/worker/src/runtime.mjs"
   }
 }
