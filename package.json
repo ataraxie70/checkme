@@ -8,8 +8,9 @@
   "scripts": {
     "lint": "node scripts/check-architecture.mjs",
     "architecture:test": "node scripts/check-architecture.mjs",
-    "typecheck": "echo 'typecheck: architecture foundation only'",
-    "test": "echo 'test: architecture foundation only'",
-    "build": "echo 'build: architecture foundation only'"
+    "runtime:test": "node --test tests/runtime/*.test.mjs",
+    "typecheck": "node scripts/typecheck-foundation.mjs",
+    "test": "npm run architecture:test && npm run runtime:test",
+    "build": "node scripts/build-foundation.mjs"
   }
 }
