@@ -1,9 +1,16 @@
 import http from "node:http";
 import { loadConfig } from "@checkme/config";
 import { createLogger } from "@checkme/observability";
+import { ReadinessService } from "./readiness.mjs";
 
 const config = loadConfig(process.env);
 const logger = createLogger({ service: "checkme-api", environment: config.nodeEnv });
+
+const readiness = new ReadinessService({
+  checks: {
+    configuration: async () => true,
+  },
+});
 
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? `127.0.0.1:${config.port}`}`);
@@ -18,9 +25,12 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === "GET" && url.pathname === "/health/ready") {
-    // Infrastructure readiness checks are deliberately explicit and composable.
-    response.writeHead(200);
-    response.end(JSON.stringify({ status: "ready", checks: { configuration: "ok" } }));
+    const result = await readiness.run();
+    response.writeHead(result.ready ? 200 : 503);
+    response.end(JSON.stringify({
+      status: result.ready ? "ready" : "not_ready",
+      checks: result.checks,
+    }));
     return;
   }
 
