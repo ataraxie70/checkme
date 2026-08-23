@@ -1,1 +1,14 @@
-{"name":"@checkme/infrastructure","private":true,"version":"0.1.0"}
+{
+  "name": "@checkme/infrastructure",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./postgres": "./src/postgres/client.mjs",
+    "./object-storage": "./src/object-storage/s3-client.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1116.0",
+    "pg": "8.23.0"
+  }
+}

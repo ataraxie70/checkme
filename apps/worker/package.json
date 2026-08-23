@@ -1,1 +1,1 @@
-{"name":"@checkme/worker","private":true,"version":"0.1.0"}
+{"name":"@checkme/worker","version":"0.1.0","private":true,"type":"module","scripts":{"start":"node src/runtime.mjs"},"dependencies":{"@checkme/config":"0.1.0","@checkme/observability":"0.1.0"}}
