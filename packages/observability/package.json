@@ -1,1 +1,1 @@
-{"name":"@checkme/observability","private":true,"version":"0.1.0"}
+{"name":"@checkme/observability","version":"0.1.0","private":true,"type":"module","exports":{".":"./src/index.mjs"}}

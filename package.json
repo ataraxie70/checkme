@@ -6,9 +6,14 @@
   "engines": { "node": ">=24.18 <25" },
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "lint": "echo 'lint: architecture foundation only'",
-    "typecheck": "echo 'typecheck: architecture foundation only'",
-    "test": "echo 'test: architecture foundation only'",
-    "build": "echo 'build: architecture foundation only'"
+    "lint": "node scripts/check-architecture.mjs",
+    "architecture:test": "node scripts/check-architecture.mjs",
+    "runtime:test": "node --test tests/runtime/*.test.mjs",
+    "domain:test": "node --test packages/domain/test/**/*.test.mjs",
+    "typecheck": "node scripts/typecheck-foundation.mjs",
+    "test": "npm run architecture:test && npm run runtime:test && npm run domain:test",
+    "build": "node scripts/build-foundation.mjs",
+    "dev:api": "node apps/api/src/runtime.mjs",
+    "dev:worker": "node apps/worker/src/runtime.mjs"
   }
 }

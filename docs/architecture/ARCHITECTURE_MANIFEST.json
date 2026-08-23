@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "layers": {
+    "domain": ["packages/domain/src"],
+    "application": ["packages/application/src"],
+    "infrastructure": ["packages/infrastructure/src"],
+    "contracts": ["packages/contracts/src"],
+    "interfaces": ["apps/api/src", "apps/web/src", "apps/worker/src"]
+  },
+  "forbiddenExternalImports": {
+    "packages/domain/src": [
+      "@nestjs/",
+      "next",
+      "react",
+      "pg",
+      "typeorm",
+      "prisma",
+      "keycloak",
+      "http://",
+      "https://"
+    ]
+  },
+  "forbiddenInternalImports": [
+    {
+      "from": "packages/application/src",
+      "to": ["packages/infrastructure/src"]
+    },
+    {
+      "from": "packages/domain/src",
+      "to": ["packages/application/src", "packages/infrastructure/src", "packages/contracts/src", "apps/"]
+    },
+    {
+      "from": "apps/web/src",
+      "to": ["packages/infrastructure/src", "packages/domain/src", "packages/application/src"]
+    }
+  ],
+  "forbiddenGeneratedPaths": ["dist", ".next", "coverage"],
+  "sourceExtensions": [".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]
+}
